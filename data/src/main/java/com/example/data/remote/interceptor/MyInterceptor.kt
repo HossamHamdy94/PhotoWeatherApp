@@ -1,5 +1,6 @@
 package com.example.data.remote.interceptor
 
+import com.example.data.BuildConfig
 import com.example.data.Constns.AUTHORIZATION_HEADER_KEY
 import com.example.data.Constns.LANG_HEADER
 import okhttp3.Interceptor
@@ -13,7 +14,7 @@ class MyInterceptor @Inject constructor() :
 
         val url = chain.request().url.newBuilder()
             .addQueryParameter(LANG_HEADER, getDefaultLanguage())
-            .addQueryParameter(AUTHORIZATION_HEADER_KEY, "")
+            .addQueryParameter(AUTHORIZATION_HEADER_KEY, BuildConfig.myApiKey?:"")
             .build()
 
         val request = chain.request().newBuilder().url(url).build()

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/weatherHistoryFragment">
 
     <fragment
         android:id="@+id/FirstFragment"
@@ -24,5 +24,43 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/captureWeatherDataFragment"
+        android:name="com.example.photoweatherapp.presentation.captureWeather.CaptureWeatherDataFragment"
+        android:label="fragment_capture_weather_data"
+        tools:layout="@layout/fragment_capture_weather_data" >
+        <argument
+            android:name="capturePhotoPath"
+            app:argType="string" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/weatherHistoryFragment"
+        android:name="com.example.photoweatherapp.presentation.weatherHistory.WeatherHistoryFragment"
+        android:label="WeatherHistoryFragment" >
+        <action
+            android:id="@+id/action_weatherHistoryFragment_to_nav_core"
+            app:destination="@id/capturePhotoFragment" />
+        <action
+            android:id="@+id/action_weatherHistoryFragment_to_captureWeatherDataFragment"
+            app:destination="@id/captureWeatherDataFragment" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/capturePhotoFragment"
+        android:name="com.example.photoweatherapp.presentation.capturePhoto.CapturePhotoFragment"
+        android:label="fragment_capture_photo"
+        >
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="www.weatherapp.com/capture-photo" />
     </fragment>
 </navigation>
